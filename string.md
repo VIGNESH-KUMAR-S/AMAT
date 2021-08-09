@@ -107,7 +107,7 @@
     - `int strcmp(const char *str1, const char *str2)`
     - If same returns **0** otherwise non-zero.
     ```c
-        int strcmp(const char *str1, const char *str2)
+        int strCmp(const char *str1, const char *str2)
         {
             int m=strlen(a);
             int n=strlen(b);
