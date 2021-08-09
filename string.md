@@ -185,6 +185,9 @@
     - Breaks string str into a series of tokens using the delimiter delim.
     - `char *strtok(char *str, const char *delim)`
     - Returns a pointer to the first token found in the string otherwise `null`.
+    - In the below example, in while loop I use `NULL` in `strtok`. This is used to check the next delimiter from current delimiter.
+    - First time we should use the string name only. From next time onwards we should use `NULL` to identify the delimiter in that string.
+    - `NULL` used to tell to the strtok that, "Please check the presence of next delimiter from present delimiter address".
     ```c
         char input[] = "a bb ccc dddd eeeee ffffff";
         char *token = strtok(input, " ");
