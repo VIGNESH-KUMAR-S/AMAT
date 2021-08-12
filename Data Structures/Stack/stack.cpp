@@ -39,7 +39,8 @@ typedef struct stack {
 		temp->next = NULL;
 		--stackSize;
 		int* address = (int *)temp;
-		//free(temp);
+		// We shouldn't free temp.
+		// free(temp);
 		return address;
 	}
 }STACK;
