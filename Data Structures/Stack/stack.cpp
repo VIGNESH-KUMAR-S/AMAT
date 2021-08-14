@@ -1,3 +1,5 @@
+// Assume stack elements are integers only
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -27,7 +29,7 @@ typedef struct stack {
 		printf("\n\tItem %d pushed at top", item);
 		return;
 	}
-	int* pop()
+	int pop()
 	{
 		NODE* temp = top;
 		if (top == NULL)
@@ -38,10 +40,9 @@ typedef struct stack {
 		top = top->next;
 		temp->next = NULL;
 		--stackSize;
-		int* address = (int *)temp;
-		// We shouldn't free temp.
-		// free(temp);
-		return address;
+		int data = temp->data;
+		free(temp);
+		return data;
 	}
 }STACK;
 
@@ -62,10 +63,9 @@ int main(void)
 	// POP 5 items in stack
 	// pop() function returns NODE* 
 	printf("\n\n\tStack items in top order\n");
-	
+
 	for (int i = 0; i < size; i++)
 	{
-		int* item = s.pop();
-		printf("\tItem %d\t: %d\n", i+1, *item);
+		printf("\tItem %d\t: %d\n", i + 1, s.pop());
 	}
 }
