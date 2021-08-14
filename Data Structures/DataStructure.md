@@ -9,3 +9,6 @@
 - When one element is connected to the 'n' number of elements known as a **non-linear data structure**. In this case, the elements are arranged in a random manner.
 - **Static data structure:** It is a type of data structure where the size is allocated at the compile time. Therefore, the maximum size is fixed.
 - **Dynamic data structure:** It is a type of data structure where the size is allocated at the run time. Therefore, the maximum size is flexible.
+
+## Resource
+- [STL](https://www.studytonight.com/cpp/stl/).
