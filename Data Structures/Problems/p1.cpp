@@ -22,6 +22,8 @@ int isValidBraces(string braces)
 		else
 			return 0;
 	}
+	if (s.size() >= 1)
+		return 0;
 	return 1;
 }
 
@@ -84,19 +86,35 @@ int getNumber(deque<char>::iterator itr)
 
 int evaluate(deque<char>* expression, deque<char>::iterator itr)
 {
+	static int countBrace = 0;
 	int result = 0, number = 0;
 	result = getNumber(itr);
 	while (itr != expression->end())
 	{
 		if (*itr == ')')
 		{
+			cout << countBrace;
 			*itr = '#';
-			return result;
+			countBrace--;
+			if (countBrace == 0)
+				return result;
+			else
+			{
+				return result + evaluate(expression, itr);
+			}
+		}
+		else if (*itr == '(')
+		{
+			*itr = '#';
+			itr++;
+			countBrace++;
+			return evaluate(expression, itr);
 		}
 		else if (*itr == '+')
 		{
 			if (*(itr + 1) == '(')
 			{
+				countBrace++;
 				*itr = *(itr + 1) = '#';
 				itr += 2;
 				result += evaluate(expression, itr);
@@ -112,6 +130,7 @@ int evaluate(deque<char>* expression, deque<char>::iterator itr)
 		{
 			if (*(itr + 1) == '(')
 			{
+				countBrace++;
 				*itr = *(itr + 1) = '#';
 				itr += 2;
 				result -= evaluate(expression, itr);
@@ -127,6 +146,7 @@ int evaluate(deque<char>* expression, deque<char>::iterator itr)
 		{
 			if (*(itr + 1) == '(')
 			{
+				countBrace++;
 				*itr = *(itr + 1) = '#';
 				itr += 2;
 				result *= evaluate(expression, itr);
@@ -142,6 +162,7 @@ int evaluate(deque<char>* expression, deque<char>::iterator itr)
 		{
 			if (*(itr + 1) == '(')
 			{
+				countBrace++;
 				*itr = *(itr + 1) = '#';
 				itr += 2;
 				result /= evaluate(expression, itr);
@@ -157,6 +178,7 @@ int evaluate(deque<char>* expression, deque<char>::iterator itr)
 		{
 			if (*(itr + 1) == '(')
 			{
+				countBrace++;
 				*itr = *(itr + 1) = '#';
 				itr += 2;
 				result %= evaluate(expression, itr);
