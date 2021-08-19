@@ -93,7 +93,6 @@ int evaluate(deque<char>* expression, deque<char>::iterator itr)
 	{
 		if (*itr == ')')
 		{
-			cout << countBrace;
 			*itr = '#';
 			countBrace--;
 			if (countBrace == 0)
